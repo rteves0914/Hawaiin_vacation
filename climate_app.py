@@ -34,8 +34,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start><br/>"
-        f"/api/v1.0/<start>/<end>"
+        f"/api/v1.0/start<br/>"
+        f"/api/v1.0/start/end"
     )
 
 
@@ -93,7 +93,25 @@ def tobs():
 
     return jsonify(all_temp)
 
+@app.route("/api/v1.0/<start>")
+def calc_temps(start):
 
+    session = Session(engine)
+    start = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start).all()
+    session.close()
+
+    return jsonify(start)
+
+@app.route("/api/v1.0/<start>/<end>")
+def calc_range(start, end):
+    
+    session = Session(engine)
+    results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    session.close()
+
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(debug=True)
