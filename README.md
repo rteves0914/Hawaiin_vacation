@@ -1,1 +1,5 @@
-# sqlalchemy_challenge
+After a long and hard work week, I finally get to take a vacation, and I decide to go to Honolulu Hawaii. In order to help with my planning for the trip, I will do the following analysis:
+
+1) I use Python and SQLAlchemy to do basic climate analysis and data exploration. I take a look at the amount of precipitation in the last 12 months and plot the inches of rain as a bar chart. The bar chart is separated by dates. Then I find the most active stations In Honolulu and calculate the temperature ranges and average temperature. I plot this data using a histogram that is separated by temperatures.
+
+2) I design a Flask API that has routes that (a) show the amount of precipitation on a certain day over the last eight years, (b) show the stations, (c) show the temperature on the island on a certain day over the last year, (d) show the maximum temperature, minimum temperature, and average temperature from a date given until today, and (e) show the maximum temperature, minimum temperature, and average temperature between a range of dates given.
